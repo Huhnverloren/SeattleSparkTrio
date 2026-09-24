@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seattle Spark Trio — Classical Music</title>
+  <meta name="description" content="Seattle Spark Trio: live classical string music in the Seattle area.">
+  <link rel="canonical" href="https://seattlesparktrio.com/">
+  <link rel="icon" type="image/png" href="media/icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Seattle Spark Trio">
+  <meta property="og:description" content="Live classical string music in the Seattle area.">
+  <meta property="og:url" content="https://seattlesparktrio.com/">
+  <meta property="og:image" content="https://seattlesparktrio.com/media/og.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #e2e5e5;      /* matches the logo video's background exactly */
+      --ink: #1a1a1a;
+      --muted: #555b5c;
+      --neon: #ef8a8a;
+      --gold: #e9c24f;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--ink); }
+    body {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 16px;
+    }
+    main { width: 100%; max-width: 640px; text-align: center; flex: 1; }
+    .logo { display: block; width: 100%; max-width: 560px; height: auto; margin: 2rem auto 0; }
+    h1 { position: absolute; left: -9999px; } /* the logo says it; keep a real heading for search and screen readers */
+    .lede { font-size: 1.5rem; font-style: italic; margin: 0.5rem 0 1.75rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.6rem;
+      border: 1.5px solid var(--ink);
+      border-radius: 999px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .btn:hover, .btn:focus-visible { border-color: var(--neon); box-shadow: 0 0 14px var(--neon); outline: none; }
+    .email { display: block; margin-top: 0.75rem; color: var(--muted); font-size: 1.05rem; }
+    footer { color: var(--muted); font-size: 0.95rem; padding: 3rem 0 1.5rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Seattle Spark Trio</h1>
+    <video class="logo" id="logo" muted playsinline preload="auto"
+           poster="media/logo.png" width="1080" height="1080"
+           aria-label="Seattle Spark Trio logo: a violin and bow drawn in a single line, with the words Seattle Sparks, classical music">
+      <source src="media/logo.mp4" type="video/mp4">
+      <img src="media/logo.png" alt="Seattle Spark Trio logo">
+    </video>
+
+    <p class="lede">Live classical string music for your event.</p>
+    <a class="btn" href="mailto:seattlesparktrio@gmail.com?subject=Booking%20inquiry">Book the trio</a>
+    <a class="email" href="mailto:seattlesparktrio@gmail.com">seattlesparktrio@gmail.com</a>
+  </main>
+  <footer>&copy; 2026 Seattle Spark Trio · Seattle, Washington</footer>
+
+  <script>
+    // Plays the logo animation once and stops on the finished logo.
+    // With reduced motion turned on, the still logo (the poster) stays up.
+    (function () {
+      var v = document.getElementById('logo');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    })();
+  </script>
+</body>
+</html>
