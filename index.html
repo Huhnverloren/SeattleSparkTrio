@@ -50,7 +50,16 @@
       transition: box-shadow 0.2s, border-color 0.2s;
     }
     .btn:hover, .btn:focus-visible { border-color: var(--neon); box-shadow: 0 0 14px var(--neon); outline: none; }
-    .email { display: block; margin-top: 0.75rem; color: var(--muted); font-size: 1.05rem; }
+    .contact { margin-top: 0.9rem; color: var(--muted); font-size: 1.05rem; }
+    .email { color: var(--muted); user-select: all; }
+    .copy {
+      font: inherit; font-size: 0.95rem; color: var(--ink);
+      background: none; border: 1px solid var(--muted); border-radius: 999px;
+      padding: 0.15rem 0.8rem; margin-left: 0.4rem; cursor: pointer;
+    }
+    .copy:hover, .copy:focus-visible { border-color: var(--neon); box-shadow: 0 0 10px var(--neon); outline: none; }
+    .alt { display: block; margin-top: 0.4rem; font-size: 0.95rem; }
+    .alt a { color: var(--muted); }
     footer { color: var(--muted); font-size: 0.95rem; padding: 3rem 0 1.5rem; }
   </style>
 </head>
@@ -66,7 +75,12 @@
 
     <p class="lede">Live classical string music for your event.</p>
     <a class="btn" href="mailto:bookthelook@seattlesparktrio.com?subject=Booking%20inquiry">Book the trio</a>
-    <a class="email" href="mailto:bookthelook@seattlesparktrio.com">bookthelook@seattlesparktrio.com</a>
+    <p class="contact">
+      <span class="email" id="email">bookthelook@seattlesparktrio.com</span>
+      <button class="copy" id="copy" type="button">Copy</button>
+      <span class="alt">Button not opening your email? Copy the address above, or
+        <a href="https://mail.google.com/mail/?view=cm&amp;to=bookthelook@seattlesparktrio.com&amp;su=Booking%20inquiry" target="_blank" rel="noopener">write from Gmail</a>.</span>
+    </p>
   </main>
   <footer>&copy; 2026 Seattle Spark Trio · Seattle, Washington</footer>
 
@@ -78,6 +92,24 @@
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var p = v.play();
       if (p && p.catch) p.catch(function () {});
+    })();
+
+    // "Book the trio" only works if the visitor's computer has a mail app set up,
+    // so the address can also be copied with one click.
+    (function () {
+      var btn = document.getElementById('copy');
+      var addr = document.getElementById('email').textContent.trim();
+      btn.addEventListener('click', function () {
+        function done() { btn.textContent = 'Copied!'; setTimeout(function () { btn.textContent = 'Copy'; }, 2000); }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(addr).then(done, function () { selectAddr(); });
+        } else { selectAddr(); }
+      });
+      function selectAddr() {
+        var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        btn.textContent = 'Press Ctrl+C';
+      }
     })();
   </script>
 </body>
