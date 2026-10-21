@@ -61,6 +61,14 @@
     .alt { display: block; margin-top: 0.4rem; font-size: 0.95rem; }
     .alt a { color: var(--muted); }
     footer { color: var(--muted); font-size: 0.95rem; padding: 3rem 0 1.5rem; }
+    .musicians { margin-top: 3rem; }
+    .musicians h2 { font-weight: 400; font-style: italic; font-size: 1.5rem; margin: 0 0 1.25rem; }
+    .people { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; }
+    .people figure { margin: 0; }
+    .people img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; }
+    .people figcaption { margin-top: 0.6rem; }
+    .people .name { display: block; font-weight: 600; }
+    .people .inst { display: block; color: var(--muted); font-style: italic; }
   </style>
   <script type="application/ld+json">
   {
@@ -74,6 +82,10 @@
     "genre": "Classical",
     "description": "Live acoustic classical string music for weddings and events in Seattle, performed by three real humans (and a Spark of inspiration).",
     "sameAs": ["https://seasparktrio.com/"],
+    "member": [
+      { "@type": "Person", "name": "Kate Irving", "roleName": "viola", "image": "https://seattlesparktrio.com/media/kate.jpg" },
+      { "@type": "Person", "name": "Erika Fiebig", "roleName": "cello", "image": "https://seattlesparktrio.com/media/erika.jpg" }
+    ],
     "areaServed": { "@type": "City", "name": "Seattle", "containedInPlace": { "@type": "State", "name": "Washington" } },
     "makesOffer": [
       { "@type": "Offer", "name": "Up to 1 hour", "price": "450", "priceCurrency": "USD" },
@@ -102,6 +114,20 @@
       <span class="alt">Button not opening your email? Copy the address above, or
         <a href="https://mail.google.com/mail/?view=cm&amp;to=bookthelook@seattlesparktrio.com&amp;su=Booking%20inquiry" target="_blank" rel="noopener">write from Gmail</a>.</span>
     </p>
+
+    <section class="musicians" aria-labelledby="musicians-heading">
+      <h2 id="musicians-heading">The musicians</h2>
+      <div class="people">
+        <figure>
+          <img src="media/kate.jpg" width="640" height="800" loading="lazy" alt="Kate Irving, smiling, holding her viola">
+          <figcaption><span class="name">Kate Irving</span><span class="inst">viola</span></figcaption>
+        </figure>
+        <figure>
+          <img src="media/erika.jpg" width="640" height="800" loading="lazy" alt="Erika Fiebig, smiling beside the scroll of her cello">
+          <figcaption><span class="name">Erika Fiebig</span><span class="inst">cello</span></figcaption>
+        </figure>
+      </div>
+    </section>
   </main>
   <footer>&copy; 2026 Seattle Spark Trio · Seattle, Washington</footer>
 
