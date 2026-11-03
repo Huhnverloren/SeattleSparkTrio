@@ -16,14 +16,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #e4e6e6;      /* matches the logo video's background exactly */
-      --ink: #1a1a1a;
-      --muted: #555b5c;
+      --bg: #2c1c17;      /* dark brick, shown until the wall loads */
+      --ink: #f3ead8;     /* cream, like the logo's chalk lines */
+      --muted: #d2c6b4;
       --neon: #ef8a8a;
       --gold: #e9c24f;
+      --panel: rgba(24, 16, 13, 0.62);
     }
     * { box-sizing: border-box; }
-    html, body { margin: 0; background: var(--bg); color: var(--ink); }
+    html, body { margin: 0; color: var(--ink); }
+    html { background: var(--bg) url("media/brick.jpg") repeat; background-size: 624px auto; }
+    body { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85); }
     body {
       font-family: "Cormorant Garamond", Georgia, serif;
       font-size: 1.25rem;
@@ -74,7 +77,8 @@
     .tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
     .tier h3 { font-weight: 600; font-size: 1.25rem; margin: 0 0 0.4rem; }
     .tier table { width: 100%; border-collapse: collapse; }
-    .tier td { padding: 0.3rem 0.2rem; border-bottom: 1px solid #c9cdcd; text-align: left; }
+    .tier, .terms, .contact { background: var(--panel); border-radius: 6px; padding: 0.9rem 1rem; }
+    .tier td { padding: 0.3rem 0.2rem; border-bottom: 1px solid rgba(243, 234, 216, 0.25); text-align: left; }
     .tier td:last-child { text-align: right; }
     .tier .sample { display: inline-block; margin-top: 0.6rem; font-size: 1rem; color: var(--muted); }
     .terms { color: var(--muted); font-size: 1.05rem; margin-top: 1.25rem; }
@@ -112,12 +116,8 @@
 <body>
   <main>
     <h1>Seattle Spark Trio</h1>
-    <video class="logo" id="logo" muted playsinline preload="auto"
-           poster="media/logo.png" width="1080" height="1080"
-           aria-label="Seattle Spark Trio logo: a violin and bow drawn in a single line, with the words Seattle Spark Trio, classical music, for weddings and events">
-      <source src="media/logo.mp4" type="video/mp4">
-      <img src="media/logo.png" alt="Seattle Spark Trio logo">
-    </video>
+    <img class="logo" src="media/logo-neon.png" width="800" height="800"
+         alt="Seattle Spark Trio logo: a violin and bow drawn in a single line, with the words Seattle Spark Trio, classical music, for weddings and events, glowing on a brick wall">
 
     <p class="lede">Live classical string music for your event.</p>
     <a class="btn" href="mailto:bookthelook@seattlesparktrio.com?subject=Booking%20inquiry">Book the trio</a>
@@ -172,15 +172,6 @@
   <footer>&copy; 2026 Seattle Spark Trio · Seattle, Washington</footer>
 
   <script>
-    // Plays the logo animation once and stops on the finished logo.
-    // With reduced motion turned on, the still logo (the poster) stays up.
-    (function () {
-      var v = document.getElementById('logo');
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var p = v.play();
-      if (p && p.catch) p.catch(function () {});
-    })();
-
     // "Book the trio" only works if the visitor's computer has a mail app set up,
     // so the address can also be copied with one click.
     (function () {
